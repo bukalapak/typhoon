@@ -1,0 +1,47 @@
+<div class="container mt-2">
+  <div class="container col-12">
+      <form class="form-inline my-2 my-lg-0 pb-2">
+        <div class="row col 12">
+          <h1 class="text-left col-6">Load Test</h1>
+          <div class="text-right col-6">
+            <input class="form-control mr-sm-2" type="search" name="jmeter[search]" placeholder="Keywords" aria-label="Search">
+            <button value="Search" class="btn btn-outline-success my-2 my-sm-0" type="submit" formmethod="get">Search</button>
+            <%= link_to 'New Load Test', new_load_test_path, class: "btn btn-primary" %>
+          </div>
+        </div>
+    </div>
+</form>
+  <div class="table-responsive">
+    <table class="table table-sm table-hover text-center">
+      <thead class="thead-dark">
+      <tr>
+        <th>Script</th>
+        <th>Squad</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @load_tests.each do |load_test| %>
+        <tr>
+          <td><%= load_test.jmx_name %></td>
+          <td><%= load_test.squad %></td>
+          <td>
+            <%= link_to 'Show', load_test_path(load_test), class: "btn btn-primary" %>
+            <%= link_to 'Edit', edit_load_test_path(load_test), class: "btn btn-secondary" %>
+            <%= link_to 'Delete', load_test_path(load_test),
+              method: :delete,
+              data: { confirm: 'Are you sure?' },
+              class: "btn btn-danger"
+            %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
+  </div>
+    <div class="container">
+        <%= will_paginate @load_tests, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center), previous_label: "Previous", next_label: "Next" %>
+    </div>
+  </div>
+</div>

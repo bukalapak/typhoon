@@ -1,0 +1,48 @@
+<div class="container mt-2">
+  <div class="col-sm pb-4">
+    <h2 class="text-left">Edit Slave Server</h2>
+  </div>
+  <%= form_with(model: @slave_server, local: true) do |form| %>
+
+     <div class="form-group">
+      <%= form.label :host %>
+      <%= form.text_field :host, class: "form-control", placeholder: "Host/IP" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :username %>
+      <%= form.text_field :username, class: "form-control", placeholder: "Username" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password %>
+      <%= form.password_field :password, class: "form-control", placeholder: "Password", value: "#{@slave_server.password}" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :port %>
+      <%= form.text_field :port, class: "form-control", placeholder: "Port" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :slave_type %>
+      <%= form.select(:slave_type, {}, {}, {class: "form-control custom-select"}) do %>
+        <%= options_for_select([['Stress Test', 'stress-test'], ['Load Test', 'load-test']], @slave_server.slave_type) %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :slave_status %>
+      <%= form.select(:slave_status, {}, {}, {class: "form-control custom-select"}) do %>
+        <%= options_for_select([['Activate', 'ON'], ['Deactivate', 'OFF']], @slave_server.slave_status) %>
+      <% end %>
+    </div>
+
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to 'Delete', slave_server_path(@slave_server),
+      method: :delete,
+      data: { confirm: 'Are you sure?' },
+      class: "btn btn-danger"
+    %>
+<% end %>
+</div>

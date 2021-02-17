@@ -1,0 +1,47 @@
+<div class="container mt-2">
+  <div class="col-sm pb-4">
+    <h2 class="text-left">Edit Load Test</h2>
+  </div>
+  <%= form_with(model: @load_test, local: true) do |form| %>
+
+    <div class="form-group">
+      <%= form.label :jmx_id, "Choose JMX file" %>
+      <%= form.select "jmx_id", Jmx.all.collect {|jmx| [jmx.name, jmx.id]}, {}, class: "form-control custom-select" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :csv, "Choose CSV file" %>
+      <div class="custom-file">
+        <%= form.file_field :csv, class: "custom-file-input" %>
+        <label class="custom-file-label" for="csvFile">Choose CSV file</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :threshold %>
+      <%= form.text_field :threshold, class: "form-control", placeholder: "in milliseconds" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :squad %>
+      <%= form.text_field :squad, class: "form-control", placeholder: "Squad" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :telegram_id, "Telegram ID" %>
+      <%= form.text_field :telegram_id, class: "form-control", placeholder: "Note" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :note %>
+      <%= form.text_area :note, class: "form-control", placeholder: "Note" %>
+    </div>
+
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to 'Delete', load_test_path(@load_test),
+      method: :delete,
+      data: { confirm: 'Are you sure?' },
+      class: "btn btn-danger"
+    %>
+<% end %>
+</div>

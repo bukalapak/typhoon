@@ -1,0 +1,54 @@
+<hashTree>
+  <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="true">
+    <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
+      <collectionProp name="Arguments.arguments">
+        <elementProp name="testName" elementType="Argument">
+          <stringProp name="Argument.name">testName</stringProp>
+          <stringProp name="Argument.value">YourTestName</stringProp>
+          <stringProp name="Argument.metadata">=</stringProp>
+        </elementProp>
+        <elementProp name="influxDBHost" elementType="Argument">
+          <stringProp name="Argument.name">influxDBHost</stringProp>
+          <stringProp name="Argument.value">Ip.Host.Influx.DB</stringProp>
+          <stringProp name="Argument.metadata">=</stringProp>
+        </elementProp>
+        <elementProp name="influxDBPort" elementType="Argument">
+          <stringProp name="Argument.name">influxDBPort</stringProp>
+          <stringProp name="Argument.value">8086</stringProp>
+          <stringProp name="Argument.metadata">=</stringProp>
+        </elementProp>
+        <elementProp name="influxDBUser" elementType="Argument">
+          <stringProp name="Argument.name">influxDBUser</stringProp>
+          <stringProp name="Argument.value">jmeter</stringProp>
+          <stringProp name="Argument.metadata">=</stringProp>
+        </elementProp>
+        <elementProp name="influxDBPassword" elementType="Argument">
+          <stringProp name="Argument.name">influxDBPassword</stringProp>
+          <stringProp name="Argument.value"></stringProp>
+          <stringProp name="Argument.metadata">=</stringProp>
+        </elementProp>
+        <elementProp name="influxDBDatabase" elementType="Argument">
+          <stringProp name="Argument.name">influxDBDatabase</stringProp>
+          <stringProp name="Argument.value">typhoon</stringProp>
+          <stringProp name="Argument.metadata">=</stringProp>
+        </elementProp>
+        <elementProp name="retentionPolicy" elementType="Argument">
+          <stringProp name="Argument.name">retentionPolicy</stringProp>
+          <stringProp name="Argument.value">autogen</stringProp>
+          <stringProp name="Argument.metadata">=</stringProp>
+        </elementProp>
+        <elementProp name="samplersList" elementType="Argument">
+          <stringProp name="Argument.name">samplersList</stringProp>
+          <stringProp name="Argument.value">.*</stringProp>
+          <stringProp name="Argument.metadata">=</stringProp>
+        </elementProp>
+        <elementProp name="useRegexForSamplerList" elementType="Argument">
+          <stringProp name="Argument.name">useRegexForSamplerList</stringProp>
+          <stringProp name="Argument.value">true</stringProp>
+          <stringProp name="Argument.metadata">=</stringProp>
+        </elementProp>
+      </collectionProp>
+    </elementProp>
+    <stringProp name="classname">rocks.nt.apm.jmeter.JMeterInfluxDBBackendListenerClient</stringProp>
+  </BackendListener>
+<hashTree/>

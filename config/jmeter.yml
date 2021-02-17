@@ -1,0 +1,31 @@
+defaults: &defaults
+  master_host: IP.JMETER.MASTER.HERE
+  master_port: 22
+  master_username: USERNAME_MASTER_JMETER_ADDHERE
+  script_path: /tmp/typhoon/jmeter_script.jmx
+  jtl_path: /tmp/typhoon/jmeter_data.jtl
+  csv_path: /tmp/typhoon/csv
+  csv_file_path: /tmp/typhoon/csv/jmeter-data.csv
+
+development:
+  master_host: <%= ENV["MASTER_HOST"] %>
+  master_password: <%= ENV["MASTER_PASSWORD"] %>
+  master_port: <%= ENV["MASTER_PORT"] %>
+  master_username: <%= ENV["MASTER_USERNAME"] %>
+  slaves:
+    -
+      host: <%= ENV["SLAVE_HOST"] %>
+      username: <%= ENV["SLAVE_USERNAME"] %>
+      password: <%= ENV["SLAVE_PASSWORD"] %>
+      port: <%= ENV["SLAVE_PORT"] %>
+
+  script_path: /tmp/typhoon/jmeter_script.jmx
+  jtl_path: /tmp/typhoon/jmeter_data.jtl
+  csv_path: /tmp/typhoon/csv
+  csv_file_path: /tmp/typhoon/csv/jmeter-data.csv
+
+production:
+  <<: *defaults
+
+test: &test
+  <<: *defaults

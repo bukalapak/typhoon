@@ -1,0 +1,77 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: typhoon_development
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_USER: root
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+
+  influxdb:
+    image: influxdb:latest
+    restart: always
+    volumes:
+      - ./data/influxdb:/var/lib/influxdb
+      
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - '3001:3000'
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_USER=bukalapak
+      - GF_SECURITY_ADMIN_PASSWORD=bukalapak
+    restart: always
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+
+  app:
+    build: .
+    volumes:
+      - .:/app
+    command: bash -c "rm -f tmp/pids/server.pid && dockerize -wait tcp://mysql:3306 bundle exec rails s"
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mysql
+      - influxdb
+      - jmeter-master
+      - jmeter-slave-1
+      - jmeter-slave-2
+      - jmeter-slave-load-test
+
+  load-test:
+    build: .
+    volumes:
+      - .:/app
+    command: bash -c "dockerize -wait tcp://mysql:3306 bundle exec rake load_test:start"
+    depends_on:
+      - mysql
+      - influxdb
+      - jmeter-master
+      - jmeter-slave-1
+      - jmeter-slave-2
+      - jmeter-slave-load-test
+
+  jmeter-master:
+    build: .
+    command: bash -c "/usr/sbin/sshd -D"
+
+  jmeter-slave-1:
+    build: .
+    command: bash -c "/usr/sbin/sshd -D & /app/apache-jmeter-5.1.1/bin/jmeter-server -Jserver.rmi.ssl.disable=true -Djava.rmi.server.hostname=jmeter-slave-1"
+
+  jmeter-slave-2:
+    build: .
+    command: bash -c "/usr/sbin/sshd -D & /app/apache-jmeter-5.1.1/bin/jmeter-server -Jserver.rmi.ssl.disable=true -Djava.rmi.server.hostname=jmeter-slave-2"
+
+  jmeter-slave-load-test:
+    build: .
+    command: bash -c "/usr/sbin/sshd -D & /app/apache-jmeter-5.1.1/bin/jmeter-server -Jserver.rmi.ssl.disable=true -Djava.rmi.server.hostname=jmeter-slave-load-test"

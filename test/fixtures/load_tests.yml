@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  jmx_id: 1
+  threads: 1
+  ramp: 1
+  duration: 1
+  squad: MyString
+  note: MyText
+
+two:
+  jmx_id: 1
+  threads: 1
+  ramp: 1
+  duration: 1
+  squad: MyString
+  note: MyText

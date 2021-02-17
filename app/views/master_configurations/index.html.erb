@@ -1,0 +1,54 @@
+<div class="container mt-2 pb-3">
+  <div class="col-sm pb-4">
+    <h2 class="text-left">Master Configuration</h2>
+  </div>
+  <%= form_with scope: :master_configuration, url: master_configurations_path, local: true do |form| %>
+
+    <div class="form-group">
+      <%= form.label :master_server_host, "Master Server Host" %>
+      <%= form.text_field :master_server_host, class: "form-control", placeholder: "IP/Hostname" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :master_server_username, "Master Server Username" %>
+      <%= form.text_field :master_server_username, class: "form-control", placeholder: "Username" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :master_server_port, "Master Server Port" %>
+      <%= form.text_field :master_server_port, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :master_server_password, "Master Server Password" %>
+      <%= form.password_field :master_server_password, class: "form-control", value: "#{@master_configuration.master_server_password if @master_configuration}" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :master_server_jmeter_run_command, "Jmeter Run Command" %>
+      <%= form.text_field :master_server_jmeter_run_command, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :influxdb_host, "Influxdb Host" %>
+      <%= form.text_field :influxdb_host, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :influxdb_port, "Influxdb Port" %>
+      <%= form.text_field :influxdb_port, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :telegram_credential, "Telegram Credential" %>
+      <%= form.password_field :telegram_credential, class: "form-control", value: "#{@master_configuration.telegram_credential if @master_configuration}" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :telegram_perf_group_id, "Perf Group ID" %>
+      <%= form.text_field :telegram_perf_group_id, class: "form-control" %>
+    </div>
+
+    <%= form.submit "Save Configuration", class: "btn btn-primary" %>
+  <% end %>
+</div>

@@ -1,0 +1,74 @@
+<div class="container mt-2">
+  <p>
+  <strong>JMX Name:</strong>
+  <%= @load_test.jmx_name %>
+  </p>
+
+  <p>
+  <strong>CSV:</strong>
+  <%= @load_test.csv.filename if @load_test.csv.attached? %>
+  </p>
+
+  <p>
+  <strong>Threshold:</strong>
+  <%= @load_test.threshold %>
+  </p>
+
+  <p>
+  <strong>Squad:</strong>
+  <%= @load_test.squad %>
+  </p>
+
+  <p>
+  <strong>Telegram ID:</strong>
+  <%= @load_test.telegram_id %>
+  </p>
+
+  <p>
+  <strong>Note:</strong>
+  <%= @load_test.note %>
+  </p>
+
+  <div class="table-responsive">
+    <table class="table table-sm table-hover text-center">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Label</th>
+          <th scope="col">Samples</th>
+          <th scope="col">Average</th>
+          <th scope="col">90%</th>
+          <th scope="col">Previous 90%</th>
+          <th scope="col">Min</th>
+          <th scope="col">Max</th>
+          <th scope="col">Error Rate</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @load_test_reports.each do |load_test_report| %>
+          <tr>
+            <th scope="row"><%= load_test_report.id %></th>
+            <td><%= load_test_report.label%></td>
+            <td><%= load_test_report.samples%></td>
+            <td><%= load_test_report.average%></td>
+            <td><%= load_test_report.percentile_90%></td>
+            <td><%= load_test_report.percentile_90_previous%></td>
+            <td><%= load_test_report.min%></td>
+            <td><%= load_test_report.max%></td>
+            <td><%= load_test_report.error_rate %></td>
+            <td><%= load_test_report.status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= link_to 'Back', load_tests_path, class: "btn btn-primary" %>
+  <%= link_to 'Delete', load_test_path(@load_test),
+    method: :delete,
+    data: { confirm: 'Are you sure?' },
+    class: "btn btn-danger"
+  %>
+
+</div>

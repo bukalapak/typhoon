@@ -1,0 +1,127 @@
+<div class="container mt-2">
+  <%= form_with scope: :typhoon, url: jmxs_path, local: true do |form| %>
+    <div class="row">
+      <div class="col-sm pb-4">
+        <h2 class="text-center">Jmeter Script List</h2>
+        <select name="jmeter[jmx_id]" class="custom-select <%= 'is-invalid' if flash[:jmx_select] != nil || (flash[:jmeter] != nil && flash[:jmeter]['jmx_id'] != nil) %>" size="16">
+          <%= options_from_collection_for_select(@jmxs, "id", "name") %>
+        </select>
+        <div class="invalid-feedback">
+          <%= 'Please select file' if flash[:jmx_select] != nil || (flash[:jmeter] != nil && flash[:jmeter]['jmx_id'] != nil) %>
+        </div>
+        <div class="custom-file mt-2">
+          <input type="hidden" name="jmx[upload_csv]" value="true">
+          <%= form.file_field :script, name: 'jmx[script]', id: 'jmxFile', class: "custom-file-input #{ 'is-invalid' if flash[:jmx] != nil && flash[:jmx]['script'] != nil}" %><br>
+          <label class="custom-file-label" for="jmxFile">Choose JMX file</label>
+          <div class="invalid-feedback">
+            <%= flash[:jmx]['script'].first if flash[:jmx] != nil && flash[:jmx]['script'] != nil %>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+          <div class="col-6">
+            <%= form.submit 'Upload Script', class: "form-control-file btn btn-primary btn-block" %>
+          </div>
+          <div class="col-6">
+            <button name="commit" value="Delete Script" class="form-control-file btn btn-secondary btn-block" type="submit" formaction="jmxs/delete" formmethod="post">Delete Script</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm pb-4">
+        <h2 class="text-center">Configuration</h2>
+        <form>
+          <div class="form-group custom-file">
+            <%= form.file_field :csv, name: 'jmeter[csv]', id: 'csvFile', class: "form-control-file custom-file-input #{ 'is-invalid' if flash[:jmeter] != nil && flash[:jmeter]['csv'] != nil }" %>
+            <input type="hidden" name="jmeter[testing_type]" value="stress-test">
+            <label class="custom-file-label" for="csvFile">Choose CSV file</label>
+            <div class="invalid-feedback">
+              <%= flash[:jmeter]['csv'].first if flash[:jmeter] != nil && flash[:jmeter]['csv'] != nil %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= label_tag(:threads, 'Threads', for: 'threads') %>
+            <%= form.text_field :threads, name: 'jmeter[threads]', id: 'threads', class: "form-control #{'is-invalid' if flash[:jmeter] != nil && flash[:jmeter]['threads'] != nil }", placeholder: 'How many threads?', type: 'text', value: "#{ flash[:start_params]['threads'] if flash[:start_params] != nil && flash[:start_params]['threads'] != nil }" %>
+            <div class="invalid-feedback">
+              <%= flash[:jmeter]['threads'].first if flash[:jmeter] != nil && flash[:jmeter]['threads'] != nil %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= label_tag(:ramp, 'Ramp', for: 'ramp') %>
+            <%= form.text_field :ramp, name: 'jmeter[ramp]', id: 'ramp', class: "form-control #{'is-invalid' if flash[:jmeter] != nil && flash[:jmeter]['ramp'] != nil }", placeholder: 'In second', type: 'text', value: "#{ flash[:start_params]['ramp'] if flash[:start_params] != nil && flash[:start_params]['ramp'] != nil }" %>
+            <div class="invalid-feedback">
+              <%= flash[:jmeter]['ramp'].first if flash[:jmeter] != nil && flash[:jmeter]['ramp'] != nil %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= label_tag(:duration, 'Duration', for: 'duration') %>
+            <%= form.text_field :duration, name: 'jmeter[duration]', id: 'duration', class: "form-control #{'is-invalid' if flash[:jmeter] != nil && flash[:jmeter]['duration'] != nil }", placeholder: 'In second', type: 'text', value: "#{ flash[:start_params]['duration'] if flash[:start_params] != nil && flash[:start_params]['duration'] != nil }" %>
+            <div class="invalid-feedback">
+              <%= flash[:jmeter]['duration'].first if flash[:jmeter] != nil && flash[:jmeter]['duration'] != nil %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= label_tag(:timeouts, 'Connection and Response Timeouts', for: 'timeouts') %>
+            <%= form.text_field :timeouts, name: 'jmeter[timeouts]', id: 'timeouts', class: "form-control #{'is-invalid' if flash[:jmeter] != nil && flash[:jmeter]['timeouts'] != nil }", placeholder: 'In milliseconds', type: 'text', value: "#{ flash[:start_params]['timeouts'] if flash[:start_params] != nil && flash[:start_params]['timeouts'] != nil }" %>
+            <div class="invalid-feedback">
+              <%= flash[:jmeter]['timeouts'].first if flash[:jmeter] != nil && flash[:jmeter]['timeouts'] != nil %>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-6">
+              <button name="commit" value="Start" type="submit" class="btn btn-primary btn-block" formaction="/jmeters/start" formmethod="post">Start</button>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="btn btn-danger btn-block" formaction="/jmeters/stop" formmethod="post">Stop</button>
+            </div>
+          </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="container col-12">
+      <form class="form-inline my-2 my-lg-0 pb-2">
+        <div class="row col 12">
+          <h2 class="text-left col-6">Run History</h2>
+          <div class="text-right col-6">
+            <input class="form-control mr-sm-2" type="search" name="jmeter[search]" placeholder="Keywords" aria-label="Search">
+            <button value="Search" class="btn btn-outline-success my-2 my-sm-0" type="submit" formmethod="get">Search</button>
+          </div>
+        </div>
+    </div>
+      </form>
+      <div class="table-responsive">
+        <table class="table table-sm table-hover text-center">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Jmeter Script</th>
+              <th scope="col">Thread</th>
+              <th scope="col">Ramp</th>
+              <th scope="col">Duration</th>
+              <th scope="col">Timeouts(ms)</th>
+              <th scope="col">Started At</th>
+              <th scope="col">Status</th>
+              <th scope="col">Artifact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @jmeters.each do |jmeter| %>
+              <tr>
+                <th scope="row"><%= jmeter.id %></th>
+                <td><%= jmeter.jmx_name%></td>
+                <td><%= jmeter.threads%></td>
+                <td><%= jmeter.ramp%></td>
+                <td><%= jmeter.duration%></td>
+                <td><%= jmeter.timeouts%></td>
+                <td><%= jmeter.created_at%></td>
+                <td><%= jmeter.status %></td>
+                <td><a role="button" class="btn btn-primary btn-block btn-sm <%= "disabled" unless jmeter.artifact.attached?%>" href="<%= rails_blob_path(jmeter.artifact, disposition: "attachment") if jmeter.artifact.attached? %>">Download Artifact</a></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="container">
+        <%= will_paginate @jmeters, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center), previous_label: "Previous", next_label: "Next" %>
+      </div>
+  </div>
+</div>
