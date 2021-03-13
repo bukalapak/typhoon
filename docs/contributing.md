@@ -9,3 +9,4 @@
    do not have permission to do that, you may request the second reviewer to merge it for you.
 
 ## Code of Conduct
+TBA - Adopt from covenant [version-2.0?](https://www.contributor-covenant.org/version/2/0/code_of_conduct/)
