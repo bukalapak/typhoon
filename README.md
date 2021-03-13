@@ -1,8 +1,6 @@
 # Typhoon
 A web-based application with user friendly interface, to simplify performance test.
 
-## Owner
-Performance Core QA
 
 ## Prerequisite
 - Ruby 2.6.3
