@@ -14,4 +14,4 @@ Performance Core QA
 Local development guide can be read [here](https://github.com/bukalapak/typhoon/blob/main/docs/local-development.md)
 
 ## Contributing
-When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change. Please read more [here](https://github.com/bukalapak/typhoon/blob/main/docs/contributing.md)
+When contributing to this repository, please first discuss the change you wish to make via [issue](https://github.com/bukalapak/typhoon/issues), email, or any other method with the owners of this repository before making a change. Please read more [here](https://github.com/bukalapak/typhoon/blob/main/docs/contributing.md)
