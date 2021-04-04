@@ -9,4 +9,4 @@
    do not have permission to do that, you may request the second reviewer to merge it for you.
 
 ## Code of Conduct
-[Link](docs/CODE_OF_CONDUCT.md)
+[Link](https://github.com/bukalapak/typhoon/blob/main/docs/CODE_OF_CONDUCT.md)
