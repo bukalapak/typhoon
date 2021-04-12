@@ -1,8 +1,11 @@
 # Local Development and Running
-To develop and running typhoon on your local machine you need to understand the basic about docker and have docker installed on your local machine. To install docker you can follow the link [here](https://github.com/bukalapak/typhoon/blob/main/docs/docker-installation.md).
+To develop and running typhoon on your local machine you need to understand the basic about docker and have docker installed. To install docker you can follow the link [here](https://github.com/bukalapak/typhoon/blob/main/docs/docker-installation.md).
 
 ## Clone The Repo
 First clone typhoon into your local machine
+```bash
+git clone git@github.com:bukalapak/typhoon.git
+```
 
 ## Build Docker Image
 First we need to create Docker image for our app and load-test container
