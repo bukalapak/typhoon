@@ -26,8 +26,8 @@ services:
     depends_on:
       - influxdb
     environment:
-      - GF_SECURITY_ADMIN_USER=bukalapak
-      - GF_SECURITY_ADMIN_PASSWORD=bukalapak
+      - GF_SECURITY_ADMIN_USER=typhoon
+      - GF_SECURITY_ADMIN_PASSWORD=typhoon
     restart: always
     volumes:
       - ./data/grafana:/var/lib/grafana
