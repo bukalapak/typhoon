@@ -45,7 +45,7 @@ docker-compose up -d grafana
 ```
 * Access grafana from http://localhost:3001
 * Login into grafana using credential below:
-  * username: bukalapak
-  * password: bukalapak
+  * username: typhoon
+  * password: typhoon
 
 You can access the Dashboard for Stress Testing or Load Testing from dashboard manager.
