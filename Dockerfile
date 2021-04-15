@@ -32,6 +32,7 @@ COPY Gemfile* ./
 
 RUN gem install bundler
 RUN bundle install
+RUN npm install bs-custom-file-input --save
 
 COPY . .  
 

@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_11_103032) do
+ActiveRecord::Schema.define(version: 2020_05_28_070919) do
 
-  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_103032) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_103032) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "jmeters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "jmeters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "jmx_id"
     t.string "jmx_name"
     t.integer "threads"
@@ -46,13 +46,13 @@ ActiveRecord::Schema.define(version: 2019_08_11_103032) do
     t.string "testing_type"
   end
 
-  create_table "jmxes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "jmxes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "load_test_reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "load_test_reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "load_test_id"
     t.integer "jmeter_id"
     t.string "label"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_103032) do
     t.index ["load_test_id", "jmeter_id"], name: "index_load_test_reports_on_load_test_id_and_jmeter_id"
   end
 
-  create_table "load_tests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "load_tests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "jmx_id"
     t.string "jmx_name"
     t.integer "threads"
@@ -88,10 +88,9 @@ ActiveRecord::Schema.define(version: 2019_08_11_103032) do
     t.integer "timeouts"
     t.bigint "telegram_id"
     t.integer "threshold"
-    t.string "schedule", default: "02:00"
   end
 
-  create_table "master_configurations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "master_configurations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "master_server_host"
     t.string "master_server_docker_host"
     t.string "master_server_username"
@@ -106,7 +105,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_103032) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "slave_servers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "slave_servers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "host"
     t.string "username"
     t.integer "port"
