@@ -39,7 +39,7 @@ class Jmx < ApplicationRecord
   def modify_backend_listener(jmx_file, jmeter)
     backend_listener_xml = File.open("lib/typhoon/backend_listener_influxdb_rocks.xml").read
     backend_listener_xml.gsub!("typhoon", "typhoon_#{jmeter.testing_type.tr("-", "_")}")
-    backend_listener_xml.gsub!("[INFLUX.IP.ADDHERE]", MasterConfiguration.last.influxdb_host) if Rails.env.development?
+    backend_listener_xml.gsub!("Ip.Host.Influx.DB", MasterConfiguration.last.influxdb_host) if Rails.env.development?
     jmx_file.gsub!(
       /<\/TestPlan>\n    <hashTree>\n/,
       "<\/TestPlan>\n    #{backend_listener_xml}"

@@ -13,7 +13,7 @@ services:
       - ./data/mysql:/var/lib/mysql
 
   influxdb:
-    image: influxdb:latest
+    image: influxdb:1.8.4
     restart: always
     volumes:
       - ./data/influxdb:/var/lib/influxdb
@@ -26,8 +26,8 @@ services:
     depends_on:
       - influxdb
     environment:
-      - GF_SECURITY_ADMIN_USER=bukalapak
-      - GF_SECURITY_ADMIN_PASSWORD=bukalapak
+      - GF_SECURITY_ADMIN_USER=typhoon
+      - GF_SECURITY_ADMIN_PASSWORD=typhoon
     restart: always
     volumes:
       - ./data/grafana:/var/lib/grafana
@@ -36,7 +36,7 @@ services:
     build: .
     volumes:
       - .:/app
-    command: bash -c "rm -f tmp/pids/server.pid && dockerize -wait tcp://mysql:3306 bundle exec rails s"
+    command: bash -c "rm -f tmp/pids/server.pid && dockerize -wait tcp://mysql:3306 bundle exec rails s -b 0.0.0.0"
     ports:
       - '3000:3000'
     depends_on:

@@ -11,7 +11,7 @@ default: &default
   username: root
   password:
   port: 3306
-  host: [IP.DB.ADDHERE]
+  host: mysql
 
 development:
   <<: *default
