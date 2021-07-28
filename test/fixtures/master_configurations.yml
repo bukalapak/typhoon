@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  master_server_host: MyString
+  master_server_port: 1
+  master_server_password: MyString
+  master_server_jmeter_run_command: MyString
+  influxdb_host: MyString
+  influxdb_port: 1
+  telegram_credential: MyString
+  telegram_perf_group_id: MyString
+
+two:
+  master_server_host: MyString
+  master_server_port: 1
+  master_server_password: MyString
+  master_server_jmeter_run_command: MyString
+  influxdb_host: MyString
+  influxdb_port: 1
+  telegram_credential: MyString
+  telegram_perf_group_id: MyString

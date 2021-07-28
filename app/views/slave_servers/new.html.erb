@@ -1,0 +1,44 @@
+<div class="container mt-2">
+  <div class="col-sm pb-4">
+    <h2 class="text-left">Add Slave Server</h2>
+  </div>
+  <%= form_with scope: :slave_server, url: slave_servers_path, local: true do |form| %>
+
+    <div class="form-group">
+      <%= form.label :host %>
+      <%= form.text_field :host, class: "form-control", placeholder: "Host/IP" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :username %>
+      <%= form.text_field :username, class: "form-control", placeholder: "Username" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password %>
+      <%= form.password_field :password, class: "form-control", placeholder: "Password" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :port %>
+      <%= form.text_field :port, class: "form-control", placeholder: "Port" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :slave_type %>
+      <%= form.select(:slave_type, {}, {}, {class: "form-control custom-select"}) do %>
+        <%= options_for_select([['Stress Test', 'stress-test'], ['Load Test', 'load-test']]) %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :slave_status %>
+      <%= form.select(:slave_status, {}, {}, {class: "form-control custom-select"}) do %>
+        <%= options_for_select([['ON', 'ON'], ['OFF', 'OFF']], @slave_server.slave_status) %>
+      <% end %>
+    </div>
+
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to 'Cancel', slave_servers_path, class: "btn btn-warning" %>
+  <% end %>
+</div>

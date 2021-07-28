@@ -1,0 +1,40 @@
+<div class="container mt-2">
+  <div class="row col-12" >
+    <h1 class="col-6 text-left" >Slave Server</h1>
+    <div class="col-6 text-right" >
+      <%= link_to 'New Slave Server', new_slave_server_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover text-center table-striped">
+      <tr class="table-info">
+        <th>Host/IP</th>
+        <th>Username</th>
+        <th>Port</th>
+        <th>Slave Type</th>
+        <th>Slave Status</th>
+        <th>Action</th>
+      </tr>
+
+      <% @slave_servers.each do |slave_server| %>
+        <tr>
+          <td><%= slave_server.host %></td>
+          <td><%= slave_server.username %></td>
+          <td><%= slave_server.port %></td>
+          <td><%= slave_server.slave_type %></td>
+          <td><%= slave_server.slave_status %></td>
+          <td>
+            <%= link_to 'Edit', edit_slave_server_path(slave_server), class: "btn btn-warning" %>
+            <%= link_to 'Delete', slave_server_path(slave_server),
+              method: :delete,
+              data: { confirm: 'Are you sure?' },
+              class: "btn btn-danger"
+            %>
+          </td>
+
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

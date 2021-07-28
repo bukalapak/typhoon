@@ -1,0 +1,33 @@
+<div class="container mt-2">
+  <p>
+  <strong>Host/IP:</strong>
+  <%= @slave_server.host %>
+  </p>
+
+  <p>
+  <strong>Username:</strong>
+  <%= @slave_server.username %>
+  </p>
+
+  <p>
+  <strong>Port Number:</strong>
+  <%= @slave_server.port %>
+  </p>
+
+  <p>
+  <strong>Slave Type:</strong>
+  <%= @slave_server.slave_type %>
+  </p>
+
+  <p>
+  <strong>Slave Status:</strong>
+  <%= @slave_server.slave_status %>
+  </p>
+
+  <%= link_to 'Back', slave_servers_path, class: "btn btn-primary" %>
+  <%= link_to 'Delete', slave_server_path(@slave_server),
+    method: :delete,
+    data: { confirm: 'Are you sure?' },
+    class: "btn btn-danger"
+  %>
+</div>

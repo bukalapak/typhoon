@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  load_test_id: 1
+  samples: 1
+  average: 1
+  percentile_90: 1
+  percentile_95: 1
+  percentile_99: 1
+  min: 1
+  max: 1
+  error_rate: 1
+
+two:
+  load_test_id: 1
+  samples: 1
+  average: 1
+  percentile_90: 1
+  percentile_95: 1
+  percentile_99: 1
+  min: 1
+  max: 1
+  error_rate: 1
