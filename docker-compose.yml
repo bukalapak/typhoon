@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mysql:
-    image: mysql
+    image: mysql:8.0.26
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -15,10 +15,9 @@ services:
     restart: always
     volumes:
       - ./data/influxdb:/var/lib/influxdb
-      
 
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:6.7.4
     ports:
       - '3001:3000'
     depends_on:
