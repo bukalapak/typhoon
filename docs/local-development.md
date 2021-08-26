@@ -16,7 +16,7 @@ docker-compose build app load-test
 ## Create DB, Migrate and Seed
 Run the command below to create db, migrate and seed the data
 ```bash
-docker-compose run --rm app dockerize -wait tcp://mysql:3306 rails db:create db:migrate db:seed
+docker-compose run --rm app dockerize -wait tcp://mysql:3306 -timeout 20s bundle exec rails db:create db:migrate db:seed  
 ```
 
 ## Run The Server

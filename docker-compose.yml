@@ -6,9 +6,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_DATABASE: typhoon_development
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: typhoon
     volumes:
       - ./data/mysql:/var/lib/mysql
 
@@ -36,7 +34,7 @@ services:
     build: .
     volumes:
       - .:/app
-    command: bash -c "rm -f tmp/pids/server.pid && dockerize -wait tcp://mysql:3306 bundle exec rails s -b 0.0.0.0"
+    command: bash -c "rm -f tmp/pids/server.pid && dockerize -wait tcp://mysql:3306 -timeout 20s bundle exec rails s -b 0.0.0.0"
     ports:
       - '3000:3000'
     depends_on:
