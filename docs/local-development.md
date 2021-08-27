@@ -7,6 +7,12 @@ First clone typhoon into your local machine
 git clone git@github.com:bukalapak/typhoon.git
 ```
 
+## Copy env.sample
+Copy env.sample to .env
+```bash
+cp env.sample .env
+```
+
 ## Build Docker Image
 First we need to create Docker image for our app and load-test container
 ```bash
