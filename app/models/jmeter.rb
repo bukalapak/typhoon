@@ -55,7 +55,7 @@ class Jmeter < ApplicationRecord
       password: master_config.master_server_password,
       port: master_config.master_server_port
     ) do |ssh|
-      ssh.exec! "./apache-jmeter-5.1.1/bin/shutdown.sh"
+      ssh.exec! "./apache-jmeter-xx.xx.xx/bin/shutdown.sh"
     end
     notif_stop
   end

@@ -13,7 +13,7 @@ MasterConfiguration.create(
   master_server_username: "username",
   master_server_password: "userpassword",
   master_server_port: 22,
-  master_server_jmeter_run_command: "/app/apache-jmeter-5.1.1/bin/jmeter",
+  master_server_jmeter_run_command: "/app/apache-jmeter-xx.xx.xx/bin/jmeter",
   influxdb_host: "influxdb",
   influxdb_port: 8086,
 )

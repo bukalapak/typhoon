@@ -40,7 +40,7 @@
 /data/influxdb
 /data/grafana/sessions
 apache-jmeter-4.0/backups/
-apache-jmeter-5.1.1/backups/
+apache-jmeter-xx.xx.xx/backups/
 
 # Ignore mac
 *.DS_Store
