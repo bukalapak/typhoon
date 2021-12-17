@@ -63,12 +63,12 @@ services:
 
   jmeter-slave-1:
     build: .
-    command: bash -c "/usr/sbin/sshd -D & /app/apache-jmeter-5.1.1/bin/jmeter-server -Jserver.rmi.ssl.disable=true -Djava.rmi.server.hostname=jmeter-slave-1"
+    command: bash -c "/usr/sbin/sshd -D & /app/apache-jmeter-xx.xx.xx/bin/jmeter-server -Jserver.rmi.ssl.disable=true -Djava.rmi.server.hostname=jmeter-slave-1"
 
   jmeter-slave-2:
     build: .
-    command: bash -c "/usr/sbin/sshd -D & /app/apache-jmeter-5.1.1/bin/jmeter-server -Jserver.rmi.ssl.disable=true -Djava.rmi.server.hostname=jmeter-slave-2"
+    command: bash -c "/usr/sbin/sshd -D & /app/apache-jmeter-xx.xx.xx/bin/jmeter-server -Jserver.rmi.ssl.disable=true -Djava.rmi.server.hostname=jmeter-slave-2"
 
   jmeter-slave-load-test:
     build: .
-    command: bash -c "/usr/sbin/sshd -D & /app/apache-jmeter-5.1.1/bin/jmeter-server -Jserver.rmi.ssl.disable=true -Djava.rmi.server.hostname=jmeter-slave-load-test"
+    command: bash -c "/usr/sbin/sshd -D & /app/apache-jmeter-xx.xx.xx/bin/jmeter-server -Jserver.rmi.ssl.disable=true -Djava.rmi.server.hostname=jmeter-slave-load-test"
